@@ -1,0 +1,16 @@
+.container__img {
+    width: 50px;
+    margin: 0 2vw;
+    padding: 0;
+}
+.container__text{
+    margin-top: 0;
+    font-size: 12px;
+}
+.container__btn {
+    cursor: pointer;
+}
+.container__btn--checked {
+    border: 1px solid black;
+    border-radius: 50%;
+}

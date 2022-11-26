@@ -1,1 +1,54 @@
-<p>homepage works!</p>
+<div class="container">
+  <div class="container__img container__img--big ">
+  </div>
+  <div class="container__text">
+    <h1 class="container__header">Get to know yourself.</h1>
+    <p class="container__paragraf">With this personality test, you will find out what personality type you are.
+    </p>
+    <app-button title="Start the test" classes="btn btn__secondary" routerLink="/test"></app-button>
+  </div>
+</div>
+<div class="container__card">
+  <app-card imgSrc="https://i.ibb.co/4MN7mw8/2022-11-24-3.jpg" title="Discover your personality within minutes!"
+    content="It provides you with detailed, unique information that can help you plan your life and work more successfully."
+    color="container__text--colored">
+  </app-card>
+
+  <app-card imgSrc="https://i.ibb.co/gRG1pZb/block1-2.jpg" title="Get valuable insights for your life."
+    content="90% of users consider they were able to take concrete actions to improve areas of their personal and professional life."
+    color="container__text--colored">
+  </app-card>
+</div>
+<div class="container container__desc">
+  <div class="container__img container__img--small"></div>
+  <div>
+    <p class="container__text-description container__text-description--white">People love to take this personality test!
+      Get to know which personality type suits you best</p>
+    <div class="container__desc__items">
+      <div>
+        <p class="container__text-description container__text-description--white">100</p>
+        <p class="container__text-description--white">Questions</p>
+      </div>
+      <div>
+        <p class="container__text-description container__text-description--white">300</p>
+        <p class="container__text-description--white">Data points analyzed</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container__works">
+  <h2 class="container__text container__item">How does it work?</h2>
+  <div class="container__card">
+    <app-card title="Get ready" content="Make sure you're in a comfortable environment where you can focus on the test"
+      imgSrc="https://i.ibb.co/FwJ2YR5/1.png"></app-card>
+    <app-card title="Take the test" content="You will answer 100 questions about yourself"
+      imgSrc="https://i.ibb.co/9gmHcVj/2.png"></app-card>
+    <app-card title="Get your results"
+      content="Get the report if you want to take a look at the nine personality types and discover where you fit in!"
+      imgSrc="https://i.ibb.co/tKhRXfS/3.png"></app-card>
+  </div>
+</div>
+
+<div class="btn">
+  <app-button title="Start the test" classes="btn btn__primary" routerLink="/test"></app-button>
+</div>

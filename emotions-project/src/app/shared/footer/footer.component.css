@@ -1,43 +1,43 @@
 footer {
-    position: absolute;
-    bottom: 0;
+    /* position: absolute;
+    bottom: 0; */
     width: 100%;
     min-height: 25vh;
     color: white;
     background-color: rgb(64, 64, 115);
 }
 
-.footer-container {
+.container {
     padding: 30px 12vw;
 }
 
-.container {
+.container__footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
 }
 
-.logo {
+.container__logo {
     font-size: 24px;
     margin-bottom: 30px;
 }
 
-.logo:hover {
+.container__logo:hover {
     cursor: pointer;
 }
 
-.logo-links {
+.container__links {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.text {
+.container__text {
     font-size: 12px;
 }
 
-.link {
+.container__link {
     margin: 10px;
 }
 
@@ -48,17 +48,17 @@ hr {
     height: 1px;
 }
 
-@media (min-width:600px) {
-    .container {
+@media (min-width:720px) {
+    .container__footer {
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .logo-links {
+    .container__links {
         flex-direction: row;
     }
 
-    .logo {
+    .container__logo {
         margin-bottom: auto;
     }
 }

@@ -1,0 +1,4 @@
+<div class="container">
+    <img class="container__img" [ngClass]="!content ? 'container__btn' : null" src={{imgSrc}} alt="circle">
+    <p class="container__text" *ngIf="content">{{content}}</p>
+</div>

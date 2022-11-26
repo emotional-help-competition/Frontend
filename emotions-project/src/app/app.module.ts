@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { TestService } from './core/test.service';
+import { TestServiceMock } from './core/test.service.mock';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { SharedModule } from './shared/shared.module';
     SharedModule
     
   ],
-  providers: [],
+  providers: [
+    {provide: TestService, useClass: TestServiceMock}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
