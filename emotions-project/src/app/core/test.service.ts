@@ -20,6 +20,6 @@ export class TestService {
   };
 
   getResult(){
-
+    return this.http.get('http://localhost:8080/getResult')
   }
 }
