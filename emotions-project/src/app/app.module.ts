@@ -18,9 +18,9 @@ import { TestServiceMock } from './core/test.service.mock';
     SharedModule
     
   ],
-  providers: [
-    {provide: TestService, useClass: TestServiceMock}
-  ],
+  // providers: [
+  //   {provide: TestService, useClass: TestServiceMock}
+  // ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

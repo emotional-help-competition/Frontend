@@ -1,0 +1,7 @@
+  {
+    "/v1": {
+      "target": "http://emotional-help.herokuapp.com",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
