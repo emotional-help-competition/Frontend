@@ -2,17 +2,37 @@
   <div class="container__title">
     Select the answers based on how well each statement describes you.
   </div>
-  <div class="container__items">
+  <section class="container__items">
     <app-circle-item imgSrc="https://i.ibb.co/LhjLCmP/01.jpg" content="Strongly disagree"></app-circle-item>
     <app-circle-item imgSrc="https://i.ibb.co/1XbTXP5/02.jpg" content="Disagree"></app-circle-item>
     <app-circle-item imgSrc="https://i.ibb.co/5GZN3Vn/03.jpg" content="Neutral"></app-circle-item>
     <app-circle-item imgSrc="https://i.ibb.co/JtCN33B/04.jpg" content="Agree"></app-circle-item>
     <app-circle-item imgSrc="https://i.ibb.co/LPqksM5/05.jpg" content="Strongly agree"></app-circle-item>
-  </div>
-  <div class="container__tests" *ngFor="let test of tests$ | async">
-    <app-question [test]="test"></app-question>
-  </div>
-</div>
-<div class="container__button" routerLink="/result">
-  <app-button title="Result" classes="btn btn__secondary" (click)="onResult()"></app-button>
+  </section>
+  <section class="container__test">
+    <form [formGroup]="testForm" (ngSubmit)="onSubmit()" class="container__form">
+      <ng-container formArrayName="questions">
+        <div *ngFor="let question of questions; let i = index">
+          <label class="container__text">
+            {{question.text}}
+          </label>
+          <div class="container__group">
+            <ng-container [formGroupName]="i">
+              <div *ngFor="let rate of radioOptions(question); let j = index" class="container__inputs">
+                <input class="container__input" type="radio" [value]="j + 1"
+                  formControlName="value" required>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>      
+      <div  *ngIf="isSubmited && testForm.invalid" class="container__error">
+        Please answer all the questions above!
+      </div>
+      <div class="container__button">
+        <app-button title="Result" type="submit" classes="btn btn__secondary"></app-button>
+      </div>
+    </form>
+  </section>
+
 </div>
