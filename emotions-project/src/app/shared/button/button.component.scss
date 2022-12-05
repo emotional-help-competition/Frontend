@@ -1,0 +1,30 @@
+.btn {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  height: 50px;
+  width: 150px;
+  cursor: pointer;
+
+  &__primary {
+    background-color: rgb(85, 100, 245);
+    border: none;
+    color: rgb(64, 64, 115);
+
+    &:hover {
+      background-color: rgb(64, 64, 115);
+      color: white;
+    }
+  }
+
+  &__secondary {
+    background-color: white;
+    border: 1px solid rgb(113, 221, 180);
+    color: rgb(64, 64, 115);
+
+    &:hover {
+      background-color: rgb(113, 221, 180);
+      ;
+    }
+  }
+}

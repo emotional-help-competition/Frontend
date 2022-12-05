@@ -1,0 +1,12 @@
+.container {
+  &__img {
+    width: 50px;
+    margin: 0 2vw;
+    padding: 0;
+  }
+
+  &__text {
+    margin-top: 0;
+    font-size: 12px;
+  }
+}
