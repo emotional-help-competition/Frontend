@@ -4,12 +4,18 @@ import { map, Observable } from 'rxjs';
 import { IEmotions } from '../models/emotions';
 import { IQuestion } from '../models/question';
 import { QuestionnareRes } from '../models/questionnare-res';
-import { ITest } from '../models/test';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestService {
+  emotionJoy = true;
+  emotionFear = true;
+  emotionSadness = true;
+  emotionDisgust = true;
+  emotionSurprise = true;
+  emotionAnger = true;
 
   constructor(private http: HttpClient) { }
 
@@ -34,7 +40,7 @@ export class TestService {
     return this.http.post<IEmotions>('/v1/results', questions, httpOptions)};
 
 
-  getResult(){
+  getResult() {
 
   }
 }
