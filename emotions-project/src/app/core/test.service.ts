@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
+import { Emotion } from '../models/emotion-enum';
 import { IEmotions } from '../models/emotions';
 import { IQuestion } from '../models/question';
 import { QuestionnareRes } from '../models/questionnare-res';
@@ -10,12 +11,12 @@ import { QuestionnareRes } from '../models/questionnare-res';
   providedIn: 'root'
 })
 export class TestService {
-  emotionJoy = true;
-  emotionFear = true;
-  emotionSadness = true;
-  emotionDisgust = true;
-  emotionSurprise = true;
-  emotionAnger = true;
+  emotionJoy = false;
+  emotionFear = false;
+  emotionSadness = false;
+  emotionDisgust = false;
+  emotionSurprise = false;
+  emotionAnger = false;
 
   constructor(private http: HttpClient) { }
 
@@ -29,15 +30,26 @@ export class TestService {
   postTest(questions: (Partial<IQuestion>[])): Observable<IEmotions> {
     const httpOptions = {
       headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': '*',
-          'Access-Control-Allow-Headers': 'Origin, Content-Type'
-        }
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type'
+      }
       )
     };
-    return this.http.post<IEmotions>('/v1/results', questions, httpOptions)};
+    return this.http.post<IEmotions>('/v1/results', questions, httpOptions)
+      .pipe(
+        tap((res: IEmotions) => {
+          if (res[Emotion.joy] >= 4) this.emotionJoy = true;
+          if (res[Emotion.fear] >= 4) this.emotionFear = true;
+          if (res[Emotion.sadness] >= 4) this.emotionSadness = true;
+          if (res[Emotion.disgust] >= 4) this.emotionDisgust = true;
+          if (res[Emotion.surprise] >= 4) this.emotionSurprise = true;
+          if (res[Emotion.anger] >= 4) this.emotionAnger = true;
+        })
+      )
+  };
 
 
   getResult() {
