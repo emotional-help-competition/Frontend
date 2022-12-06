@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Emotion } from '../models/emotion-enum';
 import { IEmotions } from '../models/emotions';
 import { IQuestion } from '../models/question';
@@ -18,8 +19,8 @@ export class TestService {
   emotionSurprise = false;
   emotionAnger = false;
 
-  //@ts-ignore
- apiURL = environment?.apiURL || ''
+  //@ts-ignore  as a default value to dev env to fix this error
+  apiURL = environment?.apiURL || ''
 
   constructor(private http: HttpClient) { }
 
@@ -31,16 +32,16 @@ export class TestService {
   }
 
   postTest(questions: (Partial<IQuestion>[])): Observable<IEmotions> {
-    
+
     return this.http.post<IEmotions>(`${this.apiURL}/v1/results`, questions)
       .pipe(
         tap((res: IEmotions) => {
-          (res[Emotion.joy] >= 4) ? this.emotionJoy = true : this.emotionJoy = false;
-          (res[Emotion.fear] >= 4) ? this.emotionFear = true : this.emotionFear = false;
-          (res[Emotion.sadness] >= 4) ? this.emotionSadness = true : this.emotionSadness = false;
-          (res[Emotion.disgust] >= 4) ? this.emotionDisgust = true : this.emotionDisgust = false;
-          (res[Emotion.surprise] >= 4) ? this.emotionSurprise = true : this.emotionSurprise = false;
-          (res[Emotion.anger] >= 4) ? this.emotionAnger = true : this.emotionAnger = false;
+          this.emotionJoy = (res[Emotion.joy] >= 4);
+          this.emotionFear = (res[Emotion.fear] >= 4);
+          this.emotionSadness = (res[Emotion.sadness] >= 4);
+          this.emotionDisgust = (res[Emotion.disgust] >= 4);
+          this.emotionSurprise = (res[Emotion.surprise] >= 4);
+          this.emotionAnger = (res[Emotion.anger] >= 4);
         })
       )
   };
