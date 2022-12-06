@@ -18,35 +18,29 @@ export class TestService {
   emotionSurprise = false;
   emotionAnger = false;
 
+  //@ts-ignore
+ apiURL = environment?.apiURL || ''
+
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<IQuestion[]> {
-    return this.http.get<QuestionnareRes>('/v1/questions')
+    return this.http.get<QuestionnareRes>(`${this.apiURL}/v1/questions`)
       .pipe(
         map(res => res.content)
       )
   }
 
   postTest(questions: (Partial<IQuestion>[])): Observable<IEmotions> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': 'Origin, Content-Type'
-      }
-      )
-    };
-    return this.http.post<IEmotions>('/v1/results', questions, httpOptions)
+    
+    return this.http.post<IEmotions>(`${this.apiURL}/v1/results`, questions)
       .pipe(
         tap((res: IEmotions) => {
-          if (res[Emotion.joy] >= 4) this.emotionJoy = true;
-          if (res[Emotion.fear] >= 4) this.emotionFear = true;
-          if (res[Emotion.sadness] >= 4) this.emotionSadness = true;
-          if (res[Emotion.disgust] >= 4) this.emotionDisgust = true;
-          if (res[Emotion.surprise] >= 4) this.emotionSurprise = true;
-          if (res[Emotion.anger] >= 4) this.emotionAnger = true;
+          (res[Emotion.joy] >= 4) ? this.emotionJoy = true : this.emotionJoy = false;
+          (res[Emotion.fear] >= 4) ? this.emotionFear = true : this.emotionFear = false;
+          (res[Emotion.sadness] >= 4) ? this.emotionSadness = true : this.emotionSadness = false;
+          (res[Emotion.disgust] >= 4) ? this.emotionDisgust = true : this.emotionDisgust = false;
+          (res[Emotion.surprise] >= 4) ? this.emotionSurprise = true : this.emotionSurprise = false;
+          (res[Emotion.anger] >= 4) ? this.emotionAnger = true : this.emotionAnger = false;
         })
       )
   };
