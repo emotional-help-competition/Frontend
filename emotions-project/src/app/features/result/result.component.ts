@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { SpinnerService } from 'src/app/core/spinner.service';
 import { TestService } from 'src/app/core/test.service';
+import { IRecommendation } from 'src/app/models/recommendation';
 
 @Component({
   selector: 'app-result',
@@ -17,6 +18,9 @@ export class ResultComponent implements OnInit {
   emotionSurprise = false;
   emotionAnger = false;
 
+  recommendations: IRecommendation[] = [];
+  isVisible = false;
+
   constructor(private testService: TestService,
     public spinnerService: SpinnerService) { }
 
@@ -29,8 +33,14 @@ export class ResultComponent implements OnInit {
       this.emotionDisgust = this.testService.emotionDisgust;
       this.emotionSurprise = this.testService.emotionSurprise;
       this.emotionAnger = this.testService.emotionAnger;
+      this.testService.getRecommendations().subscribe((res)=>{
+        this.recommendations = res;
+        this.isVisible = true;
+      });
+      
       this.spinnerService.close();
     }, 2000)
+    
   }
 
 }

@@ -1,9 +1,16 @@
+.container-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 42px;
+  margin: 10px;
+  color: rgb(64, 64, 115);
+}
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  margin-top: 40px;
+  margin-top: 60px;
   color: rgb(64, 64, 115);
   /* overflow: hidden; */
 }
@@ -145,4 +152,9 @@
   .hexagon-area__hexagon--small {
     display: flex;
   }
+}
+
+app-recommendation-list {
+  display: flex;
+  justify-content: center;
 }
