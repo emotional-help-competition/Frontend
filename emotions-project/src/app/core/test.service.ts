@@ -19,7 +19,7 @@ export class TestService {
   emotionSurprise = false;
   emotionAnger = false;
 
-  //@ts-ignore  as a default value to dev env to fix this error
+
   apiURL = environment?.apiURL || ''
 
   constructor(private http: HttpClient) { }
