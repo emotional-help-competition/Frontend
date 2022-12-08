@@ -1,0 +1,6 @@
+<div class="container">
+    <h2>Choose the quizz, please!</h2>
+    <div class="container__quizzes" *ngFor="let quizz of quizzes" (click)="quizzSelected(quizz.id)">
+        {{quizz.name}}
+    </div>
+</div>

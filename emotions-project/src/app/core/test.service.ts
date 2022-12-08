@@ -4,8 +4,9 @@ import { map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Emotion } from '../models/emotion-enum';
 import { IEmotions } from '../models/emotions';
-import { IQuestion } from '../models/question';
+import { IQuestion, IQuizz } from '../models/question';
 import { QuestionnareRes } from '../models/questionnare-res';
+import { QuizzRes } from '../models/quizz-res';
 
 
 @Injectable({
@@ -19,15 +20,21 @@ export class TestService {
   emotionSurprise = false;
   emotionAnger = false;
 
-
   apiURL = environment?.apiURL || ''
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<IQuestion[]> {
-    return this.http.get<QuestionnareRes>(`${this.apiURL}/v1/questions`)
+  getQuizz():Observable<IQuizz[]> {
+    return this.http.get<QuizzRes>(`${this.apiURL}/v1/quizzes`)
       .pipe(
         map(res => res.content)
+      )
+  }
+
+  getQuestions(id:number): Observable<IQuestion[]> {
+    return this.http.get<QuestionnareRes>(`${this.apiURL}/v1/quizzes/${id}`)
+      .pipe(
+        map(res => res.questions)
       )
   }
 
