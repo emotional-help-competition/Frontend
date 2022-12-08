@@ -6,3 +6,14 @@ export interface IEmotions {
     "5": number;
     "6": number
 }
+
+export interface ResultItem {
+    category: string;
+    subCategories: SubCategory[];
+  }
+  
+  export interface SubCategory {
+    emotions: string[];
+    score: number;
+  }
+  

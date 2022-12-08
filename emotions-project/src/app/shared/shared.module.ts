@@ -8,8 +8,9 @@ import { CardComponent } from './card/card.component';
 import { CircleItemComponent } from './circle-item/circle-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { EmotionMapComponent } from './emotion-map/emotion-map.component';
 
-const components = [HeaderComponent, FooterComponent, ButtonComponent, CardComponent, CircleItemComponent, SpinnerComponent]
+const components = [HeaderComponent, FooterComponent, ButtonComponent, CardComponent, CircleItemComponent, SpinnerComponent, EmotionMapComponent]
 
 @NgModule({
   declarations: [...components],

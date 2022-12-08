@@ -1,0 +1,23 @@
+<section class="emotions-map">
+    <div class="emotions-map__item">
+      <h3 class="emotions-map__hexagon">Emotions</h3>
+    </div>
+  
+    <div *ngFor="let item of result; let i = index"
+         class="emotions-map__item">
+  
+      <h4 class="emotions-map__hexagon" [ngStyle]="{'background': getBgColour(item)}">
+        {{item.category}}
+      </h4>
+  
+      <div class="emotions-map__sub-categories" [ngClass]="'emotions-map__sub-categories--'+ (i + 1)">
+        <div *ngFor="let cat of item.subCategories; let j = index">
+          <div class="emotions-map__hexagon emotions-map__hexagon--small"
+               [ngStyle]="{'background': getBgColour(item, cat.score)}">
+            <span *ngFor="let e of cat.emotions">{{e}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Emotion } from '../models/emotion-enum';
-import { IEmotions } from '../models/emotions';
+import { IEmotions, ResultItem } from '../models/emotions';
 import { IQuestion } from '../models/question';
 import { QuestionnareRes } from '../models/questionnare-res';
 
@@ -18,22 +18,21 @@ export class TestService {
   emotionDisgust = false;
   emotionSurprise = false;
   emotionAnger = false;
-
-
+// 
   apiURL = environment?.apiURL || ''
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<IQuestion[]> {
-    return this.http.get<QuestionnareRes>(`${this.apiURL}/v1/questions`)
+    return this.http.get<QuestionnareRes>(`${this.apiURL}/v1/quizzes/1`)
       .pipe(
-        map(res => res.content)
+        map(res => res.questions)
       )
   }
 
   postTest(questions: (Partial<IQuestion>[])): Observable<IEmotions> {
 
-    return this.http.post<IEmotions>(`${this.apiURL}/v1/results`, questions)
+    return this.http.post<IEmotions>(`${this.apiURL}/v1/quizzes/1`, questions)
       .pipe(
         tap((res: IEmotions) => {
           this.emotionJoy = (res[Emotion.joy] >= 4);
@@ -47,7 +46,7 @@ export class TestService {
   };
 
 
-  getResult() {
-
+  getResult(attemptId:number):Observable<ResultItem[]> {
+    return this.http.get<ResultItem[]>(`${this.apiURL}/v1/results/${attemptId}`)
   }
 }

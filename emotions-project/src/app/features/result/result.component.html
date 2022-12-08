@@ -1,4 +1,4 @@
-<div class="wrapper">
+<!-- <div class="wrapper">
   <div class="container">
     <div class="hexagon-area hexagon-area--first">
       <div class="hexagon-area__hexagon" [class.hexagon-area__hexagon--joy]="emotionJoy">Joy</div>
@@ -179,7 +179,9 @@
 
     </div>
   </div>
-</div>
+</div> -->
+
+<app-emotion-map [result] = "result"></app-emotion-map>
 <div>
   <app-spinner *ngIf="this.spinnerService.isVisible$ | async"></app-spinner>
 </div>
