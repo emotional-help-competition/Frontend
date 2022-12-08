@@ -1,0 +1,13 @@
+.placeholder {
+  display: flex;
+  flex-flow: column;
+  height: calc(100vh - 110px);
+}
+
+.inner-placeholder {
+  flex: 1;
+}
+
+app-footer {
+  flex: 0;
+}
