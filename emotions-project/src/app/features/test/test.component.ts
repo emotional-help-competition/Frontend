@@ -13,6 +13,7 @@ import { IQuestion } from 'src/app/models/question';
 export class TestComponent implements OnInit, OnDestroy {
 
   sub!: Subscription;
+  postSub!: Subscription;
   isSubmited = false;
   questions: IQuestion[] = [];
 
@@ -56,17 +57,15 @@ export class TestComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    
     this.isSubmited = true;
     if (this.testForm.invalid) return
-    this.testService.postTest(this.testForm.value.questions as IQuestion[]).subscribe( (res)=>{
-      console.log(res)
-    })
-    this.router.navigate(['/result'])    
+    this.postSub = this.testService.postTest(this.testForm.value.questions as IQuestion[]).subscribe();
+    this.router.navigate(['/result']);
   }
 
 
   ngOnDestroy(): void {
     if (this.sub) this.sub.unsubscribe();
+    if (this.postSub) this.postSub.unsubscribe();
   }
 }

@@ -1,17 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import { IRecommendation } from 'src/app/models/recommendation';
 
 @Component({
   selector: 'app-recommendation-list',
   templateUrl: './recommendation-list.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./recommendation-list.component.scss']
 })
-export class RecommendationListComponent implements OnInit {
+export class RecommendationListComponent {
   @Input() recommendations!: IRecommendation[];
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
