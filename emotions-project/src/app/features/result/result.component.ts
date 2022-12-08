@@ -26,6 +26,9 @@ export class ResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinnerService.open()
+    this.testService.getRecommendations().subscribe((res) => {
+      this.recommendations = res;
+    });
     setTimeout(() => {
       this.emotionJoy = this.testService.emotionJoy;
       this.emotionFear = this.testService.emotionFear;
@@ -33,14 +36,9 @@ export class ResultComponent implements OnInit {
       this.emotionDisgust = this.testService.emotionDisgust;
       this.emotionSurprise = this.testService.emotionSurprise;
       this.emotionAnger = this.testService.emotionAnger;
-      this.testService.getRecommendations().subscribe((res)=>{
-        this.recommendations = res;
-        this.isVisible = true;
-      });
-      
+      this.isVisible = true;
       this.spinnerService.close();
-    }, 2000)
-    
+    }, 2000);
   }
 
 }

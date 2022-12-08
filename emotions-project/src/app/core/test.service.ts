@@ -54,6 +54,6 @@ export class TestService {
   }
 
   getRecommendations(): Observable<IRecommendation[]>{
-    return of(recommendationsMock)
+    return this.http.get<IRecommendation[]>(`${this.apiURL}/v1/appointments/attempt/1`)
   }
 }
