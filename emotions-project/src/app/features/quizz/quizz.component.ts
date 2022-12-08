@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { TestService } from 'src/app/core/test.service';
 import { IQuizz } from 'src/app/models/question';
 
@@ -8,17 +8,15 @@ import { IQuizz } from 'src/app/models/question';
   templateUrl: './quizz.component.html',
   styleUrls: ['./quizz.component.scss']
 })
-export class QuizzComponent implements OnInit {
+export class QuizzComponent implements OnInit, OnDestroy {
   quizzes:IQuizz[] = [];
-
-  constructor(private testService: TestService,
-    private router: Router) { }
+  sub!: Subscription;
+  constructor(private testService: TestService) { }
 
   ngOnInit(): void {
-    this.testService.getQuizz().subscribe(res=>this.quizzes = res)
+    this.sub = this.testService.getQuizz().subscribe(res=>this.quizzes = res);
   }
-
-  quizzSelected(id:number) {
-    this.router.navigate(['/test', id])
+  ngOnDestroy(): void {
+    if(this.sub) this.sub.unsubscribe();
   }
 }
