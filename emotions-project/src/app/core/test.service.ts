@@ -24,7 +24,7 @@ export class TestService {
 
   constructor(private http: HttpClient) { }
 
-  getQuizz():Observable<IQuizz[]> {
+  getQuizzes():Observable<IQuizz[]> {
     return this.http.get<QuizzRes>(`${this.apiURL}/v1/quizzes`)
       .pipe(
         map(res => res.content)

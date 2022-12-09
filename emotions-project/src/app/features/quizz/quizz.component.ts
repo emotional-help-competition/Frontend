@@ -14,7 +14,7 @@ export class QuizzComponent implements OnInit, OnDestroy {
   constructor(private testService: TestService) { }
 
   ngOnInit(): void {
-    this.sub = this.testService.getQuizz().subscribe(res=>this.quizzes = res);
+    this.sub = this.testService.getQuizzes().subscribe(res=>this.quizzes = res);
   }
   ngOnDestroy(): void {
     if(this.sub) this.sub.unsubscribe();
