@@ -1,3 +1,6 @@
+<div class="container-title">
+  Your test results
+</div>
 <div class="wrapper">
   <div class="container">
     <div class="hexagon-area hexagon-area--first">
@@ -13,12 +16,12 @@
 
     <div class="hexagon-area hexagon-area--last">
       <div class="hexagon-area__hexagon" [class.hexagon-area__hexagon--fear]="emotionFear">Fear</div>
-      <div class="hexagon-area__hexagon"[class.hexagon-area__hexagon--sadness]="emotionSadness">Sadness</div>
+      <div class="hexagon-area__hexagon" [class.hexagon-area__hexagon--sadness]="emotionSadness">Sadness</div>
     </div>
 
 
     <div class="hexagon-area-description hexagon-area-description--joy"
-    [class.hexagon-area-description-joy--highlighted]="emotionJoy">
+      [class.hexagon-area-description-joy--highlighted]="emotionJoy">
 
       <div class="hexagon-area hexagon-area--top">
         <div class="hexagon-area__hexagon hexagon-area__hexagon--small">
@@ -41,10 +44,10 @@
       </div>
 
     </div>
- 
+
 
     <div class="hexagon-area-description hexagon-area-description--surpraise"
-    [class.hexagon-area-description-surprise--highlighted]="emotionSurprise">
+      [class.hexagon-area-description-surprise--highlighted]="emotionSurprise">
 
       <div class="hexagon-area hexagon-area--top">
         <div class="hexagon-area__hexagon hexagon-area__hexagon--small">
@@ -71,7 +74,7 @@
 
 
     <div class="hexagon-area-description hexagon-area-description--anger"
-    [class.hexagon-area-description-anger--highlighted]="emotionAnger">
+      [class.hexagon-area-description-anger--highlighted]="emotionAnger">
 
       <div class="hexagon-area hexagon-area--top">
         <div class="hexagon-area__hexagon hexagon-area__hexagon--small">
@@ -102,7 +105,7 @@
 
 
     <div class="hexagon-area-description hexagon-area-description--disgust"
-    [class.hexagon-area-description-disgust--highlighted]="emotionDisgust">
+      [class.hexagon-area-description-disgust--highlighted]="emotionDisgust">
 
       <div class="hexagon-area hexagon-area--top">
         <div class="hexagon-area__hexagon hexagon-area__hexagon--small">
@@ -132,7 +135,7 @@
 
 
     <div class="hexagon-area-description hexagon-area-description--fear"
-    [class.hexagon-area-description-fear--highlighted]="emotionFear">
+      [class.hexagon-area-description-fear--highlighted]="emotionFear">
 
       <div class="hexagon-area hexagon-area--top">
         <div class="hexagon-area__hexagon hexagon-area__hexagon--small">
@@ -155,7 +158,7 @@
 
 
     <div class="hexagon-area-description hexagon-area-description--sadness"
-    [class.hexagon-area-description-sadness--highlighted]="emotionSadness">
+      [class.hexagon-area-description-sadness--highlighted]="emotionSadness">
 
       <div class="hexagon-area hexagon-area--top">
         <div class="hexagon-area__hexagon hexagon-area__hexagon--small">
@@ -183,3 +186,8 @@
 <div>
   <app-spinner *ngIf="this.spinnerService.isVisible$ | async"></app-spinner>
 </div>
+
+<div class="container-title" *ngIf="isVisible">
+  Recommendations
+</div>
+<app-recommendation-list [recommendations]="recommendations"></app-recommendation-list>

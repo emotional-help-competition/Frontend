@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { recommendationsMock } from '../mocks/recommendations-mock';
 import { Emotion } from '../models/emotion-enum';
 import { IEmotions } from '../models/emotions';
 import { IQuestion, IQuizz } from '../models/question';
 import { QuestionnareRes } from '../models/questionnare-res';
 import { QuizzRes } from '../models/quizz-res';
+import { IRecommendation } from '../models/recommendation';
+
 
 
 @Injectable({
@@ -56,5 +59,9 @@ export class TestService {
 
   getResult() {
 
+  }
+
+  getRecommendations(): Observable<IRecommendation[]>{
+    return this.http.get<IRecommendation[]>(`${this.apiURL}/v1/appointments/attempt/1`)
   }
 }
