@@ -1,8 +1,8 @@
-<div>
-  <app-spinner *ngIf="this.spinnerService.isVisible$ | async"></app-spinner>
-</div>
-
+<app-emotion-map [result] = "result"></app-emotion-map>
 <div class="container-title" *ngIf="isVisible">
   Recommendations
 </div>
 <app-recommendation-list [recommendations]="recommendations"></app-recommendation-list>
+<div>
+  <app-spinner *ngIf="this.spinnerService.isVisible$ | async"></app-spinner>
+</div>

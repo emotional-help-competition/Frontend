@@ -30,11 +30,13 @@ export class TestComponent implements OnInit, OnDestroy {
   get questionsArr(): FormArray {
     return this.testForm.get('questions') as FormArray
   }
+  id!: number;
 
   ngOnInit(): void {
     this.spinnerService.open()
-    const id: number = this.route.snapshot.params['id'];
-    this.sub = this.testService.getQuestions(id).subscribe(res => {
+    this.id = this.route.snapshot.params['id'];
+    this.sub = this.testService.getQuizz(this.id).subscribe(res => {
+      console.log(res)
       this.questions = res;
       this.setFormData();
       this.isVisible = true;
@@ -62,12 +64,12 @@ export class TestComponent implements OnInit, OnDestroy {
     return new Array(5);
   }
 
-  onSubmit() {    
+  onSubmit() {
     this.isSubmited = true;
     if (this.testForm.invalid) return
-    this.testService.processTest(this.testForm.value.questions as IQuestion[]).subscribe( (id)=>{
-      this.router.navigate(['/result', id]) 
-    })       
+    this.testService.processTest(this.testForm.value.questions as IQuestion[], this.id).subscribe(atemptId => {
+      this.router.navigate(['/result', atemptId])
+    })
   }
 
   ngOnDestroy(): void {
