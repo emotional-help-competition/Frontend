@@ -1,16 +1,19 @@
+
+header {
+    height: 90px;
+    display: flex;
+    border-bottom: 20px solid rgb(113, 221, 180);
+    box-sizing: border-box;
+    align-items: center;
+}
 .logo {
     color: rgb(64, 64, 115);
     margin: 25px 12vw;
     font-size: 32px;
-    font-weight: bold;
+    font-weight: 700;
     text-decoration: none;
-}
-
-.placeholder {
-    background-color: rgb(113, 221, 180);
-    height: 60px;
-}
-
-.logo:hover {
     cursor: pointer;
+    width: 75%;
+    margin: 0 auto;
 }
+
