@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { TestService } from 'src/app/core/test.service';
 import { IQuestion } from 'src/app/models/question';
 
@@ -11,7 +11,6 @@ import { IQuestion } from 'src/app/models/question';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit, OnDestroy {
-
   sub!: Subscription;
   isSubmited = false;
   questions: IQuestion[] = [];
@@ -55,16 +54,13 @@ export class TestComponent implements OnInit, OnDestroy {
     return new Array(5);
   }
 
-  onSubmit() {
-    
+  onSubmit() {    
     this.isSubmited = true;
     if (this.testForm.invalid) return
-    this.testService.postTest(this.testForm.value.questions as IQuestion[]).subscribe( (res)=>{
-      console.log(res)
-    })
-    this.router.navigate(['/result'])    
+    this.testService.processTest(this.testForm.value.questions as IQuestion[]).subscribe( (id)=>{
+      this.router.navigate(['/result', id]) 
+    })       
   }
-
 
   ngOnDestroy(): void {
     if (this.sub) this.sub.unsubscribe();
