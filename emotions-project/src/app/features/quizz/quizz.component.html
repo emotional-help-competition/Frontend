@@ -1,6 +1,7 @@
 <div class="container">
-    <h2>Choose the quizz, please!</h2>
-    <div class="container__quizzes" *ngFor="let quizz of quizzes" [routerLink]="['/quizz', quizz.id]">
-        {{quizz.name}}
-    </div>
+  <h2>Choose the quizz, please!</h2>
+  <div class="container__quizzes" *ngFor="let quizz of quizzes" [routerLink]="['/quizz', quizz.id]">
+    <p class="container__text container__text--title">{{quizz.name}}</p>
+    <p class="container__text container__text--description">{{quizz.description}}</p>
+  </div>
 </div>
