@@ -9,8 +9,10 @@ import { CircleItemComponent } from './circle-item/circle-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { EmotionMapComponent } from './emotion-map/emotion-map.component';
+import { RecommendationListComponent } from './recommendation-list/recommendation-list.component';
+import { RecommendationComponent } from './recommendation/recommendation.component';
 
-const components = [HeaderComponent, FooterComponent, ButtonComponent, CardComponent, CircleItemComponent, SpinnerComponent, EmotionMapComponent]
+const components = [HeaderComponent, FooterComponent, ButtonComponent, CardComponent, CircleItemComponent, SpinnerComponent, RecommendationListComponent, RecommendationComponent, EmotionMapComponent]
 
 @NgModule({
   declarations: [...components],

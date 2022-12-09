@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  height: calc(100vh - 90px);
+}
+main {
+  flex: 1;
+}
+
+app-footer {
+  flex: 0;
+}

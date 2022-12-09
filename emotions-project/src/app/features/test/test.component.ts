@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SpinnerService } from 'src/app/core/spinner.service';
 import { TestService } from 'src/app/core/test.service';
 import { IQuestion } from 'src/app/models/question';
 
@@ -12,25 +13,32 @@ import { IQuestion } from 'src/app/models/question';
 })
 export class TestComponent implements OnInit, OnDestroy {
   sub!: Subscription;
+  postSub!: Subscription;
   isSubmited = false;
+  isVisible = false;
   questions: IQuestion[] = [];
 
   testForm = new FormGroup({
     questions: new FormArray([])
   });
 
-
   constructor(private testService: TestService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    public spinnerService: SpinnerService) { }
 
   get questionsArr(): FormArray {
     return this.testForm.get('questions') as FormArray
   }
 
   ngOnInit(): void {
-    this.sub = this.testService.getAll().subscribe(questions => {
-      this.questions = questions;
+    this.spinnerService.open()
+    const id: number = this.route.snapshot.params['id'];
+    this.sub = this.testService.getQuestions(id).subscribe(res => {
+      this.questions = res;
       this.setFormData();
+      this.isVisible = true;
+      this.spinnerService.close()
     })
   }
 
@@ -64,5 +72,6 @@ export class TestComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.sub) this.sub.unsubscribe();
+    if (this.postSub) this.postSub.unsubscribe();
   }
 }

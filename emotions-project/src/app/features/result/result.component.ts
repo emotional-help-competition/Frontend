@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SpinnerService } from 'src/app/core/spinner.service';
@@ -12,9 +13,13 @@ import { ResultItem } from 'src/app/models/emotions';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit, OnDestroy {
+
   result!: ResultItem[];
   sub!: Subscription;
-  
+  recommendations: IRecommendation[] = [];
+  isVisible = false;
+  sub!: Subscription;
+
   constructor(private testService: TestService,
     private route: ActivatedRoute,
     public spinnerService: SpinnerService) { }
@@ -31,4 +36,5 @@ export class ResultComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.sub) this.sub.unsubscribe()
   }
+
 }
