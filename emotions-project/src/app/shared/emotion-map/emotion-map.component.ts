@@ -23,6 +23,6 @@ export class EmotionMapComponent implements OnInit {
     let g = parseInt(color.substring(2, 4), 16);
     let b = parseInt(color.substring(4, 6), 16);
 
-    return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity/10 + ')';
   }
 }

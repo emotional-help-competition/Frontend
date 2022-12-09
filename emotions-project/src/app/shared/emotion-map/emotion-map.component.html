@@ -14,7 +14,7 @@
         <div *ngFor="let cat of item.subCategories; let j = index">
           <div class="emotions-map__hexagon emotions-map__hexagon--small"
                [ngStyle]="{'background': getBgColour(item, cat.score)}">
-            <span *ngFor="let e of cat.emotions">{{e}}</span>
+            <span>{{cat.emotions}}</span>
           </div>
         </div>
       </div>

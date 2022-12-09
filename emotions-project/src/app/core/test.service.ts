@@ -18,8 +18,9 @@ export class TestService {
   emotionDisgust = false;
   emotionSurprise = false;
   emotionAnger = false;
-// 
+
   apiURL = environment?.apiURL || ''
+  attemptId!: number;
 
   constructor(private http: HttpClient) { }
 
@@ -30,23 +31,19 @@ export class TestService {
       )
   }
 
-  postTest(questions: (Partial<IQuestion>[])): Observable<IEmotions> {
+  postTest(questions: (Partial<IQuestion>[])): Observable<number> {
 
-    return this.http.post<IEmotions>(`${this.apiURL}/v1/quizzes/1`, questions)
-      .pipe(
-        tap((res: IEmotions) => {
-          this.emotionJoy = (res[Emotion.joy] >= 4);
-          this.emotionFear = (res[Emotion.fear] >= 4);
-          this.emotionSadness = (res[Emotion.sadness] >= 4);
-          this.emotionDisgust = (res[Emotion.disgust] >= 4);
-          this.emotionSurprise = (res[Emotion.surprise] >= 4);
-          this.emotionAnger = (res[Emotion.anger] >= 4);
-        })
-      )
+    return this.http.post<number>(`${this.apiURL}/v1/quizzes/1`, questions)
+    .pipe(
+      tap(res=> this.attemptId = res)
+    )
   };
 
+  get attempt() {
+    return this.attemptId
+  }
 
   getResult(attemptId:number):Observable<ResultItem[]> {
-    return this.http.get<ResultItem[]>(`${this.apiURL}/v1/results/${attemptId}`)
+    return this.http.get<ResultItem[]>(`${this.apiURL}/v1/results/${this.attemptId}`)
   }
 }

@@ -13,7 +13,7 @@ export interface ResultItem {
   }
   
   export interface SubCategory {
-    emotions: string[];
+    emotions: string;
     score: number;
   }
   

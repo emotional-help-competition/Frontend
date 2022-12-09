@@ -10,14 +10,6 @@ import { ResultItem } from 'src/app/models/emotions';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
-
-  // emotionJoy = false;
-  // emotionFear = false;
-  // emotionSadness = false;
-  // emotionDisgust = false;
-  // emotionSurprise = false;
-  // emotionAnger = false;
-
   result!:ResultItem[];
 
   constructor(private testService: TestService,
@@ -25,14 +17,9 @@ export class ResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinnerService.open()
-    this.testService.getResult(1).subscribe((res)=>this.result = res)
-    setTimeout(() => {
-      // this.emotionJoy = this.testService.emotionJoy;
-      // this.emotionFear = this.testService.emotionFear;
-      // this.emotionSadness = this.testService.emotionSadness;
-      // this.emotionDisgust = this.testService.emotionDisgust;
-      // this.emotionSurprise = this.testService.emotionSurprise;
-      // this.emotionAnger = this.testService.emotionAnger;
+    const atemptId = this.testService.attempt
+      this.testService.getResult(atemptId).subscribe((res)=>this.result = res)
+    setTimeout(() => {      
       this.spinnerService.close();
     }, 2000)
   }
