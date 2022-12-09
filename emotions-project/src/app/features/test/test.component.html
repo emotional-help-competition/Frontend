@@ -29,10 +29,12 @@
       <div  *ngIf="isSubmited && testForm.invalid" class="container__error">
         Please answer all the questions above!
       </div>
-      <div class="container__button">
+      <div class="container__button" *ngIf="isVisible">
         <app-button title="Result" type="submit" classes="btn btn__secondary"></app-button>
       </div>
     </form>
   </section>
-
+</div>
+<div>
+  <app-spinner *ngIf="this.spinnerService.isVisible$ | async"></app-spinner>
 </div>

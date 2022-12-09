@@ -1,19 +1,46 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(64, 64, 115);
+
+  &__quizzes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__quizz {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    color: rgb(64, 64, 115);
+    width: 200px;
+    height: 300px;
+    background-color: rgb(113, 221, 180);
+    margin: 20px;
+    text-align: center;
+    cursor: pointer;
 
-    &__quizzes {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40vw;
-        height: 100px;
-        background-color: rgb(113, 221, 180);
-        margin: 20px;
-        text-align: center;
-        font-size: 24px;
-        cursor: pointer;
+    &:hover {
+      transform: scale(1.05);
     }
+  }
+
+  &__icon {
+    width: 80px;
+    margin: 20px 0;
+  }
+
+  &__text {
+    margin: 5px 0;
+
+    &--title {
+      font-size: 24px;
+    }
+
+    &--description {
+      font-size: 18px;
+    }
+  }
 }

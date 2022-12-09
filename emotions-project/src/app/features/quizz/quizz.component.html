@@ -1,6 +1,13 @@
 <div class="container">
-    <h2>Choose the quizz, please!</h2>
-    <div class="container__quizzes" *ngFor="let quizz of quizzes" [routerLink]="['/quizz', quizz.id]">
-        {{quizz.name}}
+  <h2>Choose the quizz, please!</h2>
+  <div class="container__quizzes">
+    <div class="container__quizz" *ngFor="let quizz of quizzes" [routerLink]="['/quizz', quizz.id]">
+      <p class="container__text container__text--title">{{quizz.name}}</p>
+      <img class="container__icon" src="https://i.ibb.co/Pck5vfS/2022-12-09-1.png" alt="logo">
+      <p class="container__text container__text--description">{{quizz.description}}</p>
     </div>
+  </div>
+</div>
+<div>
+  <app-spinner *ngIf="this.spinnerService.isVisible$ | async"></app-spinner>
 </div>
