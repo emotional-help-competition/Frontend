@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(64, 64, 115);
+
+    &__quizzes {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40vw;
+        height: 100px;
+        background-color: rgb(113, 221, 180);
+        margin: 20px;
+        text-align: center;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}

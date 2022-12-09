@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Subscription } from 'rxjs';
 import { TestService } from 'src/app/core/test.service';
 import { IQuestion } from 'src/app/models/question';
@@ -23,15 +23,18 @@ export class TestComponent implements OnInit, OnDestroy {
 
 
   constructor(private testService: TestService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   get questionsArr(): FormArray {
     return this.testForm.get('questions') as FormArray
   }
 
   ngOnInit(): void {
-    this.sub = this.testService.getAll().subscribe(questions => {
-      this.questions = questions;
+    //@ts-ignore
+    const id: number = this.route.snapshot.params.id;
+    this.sub = this.testService.getQuestions(id).subscribe(res => {
+      this.questions = res;
       this.setFormData();
     })
   }
@@ -59,8 +62,9 @@ export class TestComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.isSubmited = true;
     if (this.testForm.invalid) return
-    this.postSub = this.testService.postTest(this.testForm.value.questions as IQuestion[]).subscribe();
-    this.router.navigate(['/result']);
+    this.testService.postTest(this.testForm.value.questions as IQuestion[]).subscribe((res) => {
+     this.router.navigate(['/result'])
+    })
   }
 
 

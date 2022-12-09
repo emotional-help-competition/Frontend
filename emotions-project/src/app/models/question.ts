@@ -7,3 +7,10 @@ export interface IQuestion {
     }
     value?: number;
 }
+
+export interface IQuizz {
+    id: number;
+    descritption: string;
+    name: string;
+    questions: IQuestion[]
+}

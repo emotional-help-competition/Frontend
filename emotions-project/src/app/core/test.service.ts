@@ -5,9 +5,11 @@ import { environment } from 'src/environments/environment';
 import { recommendationsMock } from '../mocks/recommendations-mock';
 import { Emotion } from '../models/emotion-enum';
 import { IEmotions } from '../models/emotions';
-import { IQuestion } from '../models/question';
+import { IQuestion, IQuizz } from '../models/question';
 import { QuestionnareRes } from '../models/questionnare-res';
+import { QuizzRes } from '../models/quizz-res';
 import { IRecommendation } from '../models/recommendation';
+
 
 
 @Injectable({
@@ -21,15 +23,21 @@ export class TestService {
   emotionSurprise = false;
   emotionAnger = false;
 
-
   apiURL = environment?.apiURL || ''
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<IQuestion[]> {
-    return this.http.get<QuestionnareRes>(`${this.apiURL}/v1/questions`)
+  getQuizzes():Observable<IQuizz[]> {
+    return this.http.get<QuizzRes>(`${this.apiURL}/v1/quizzes`)
       .pipe(
         map(res => res.content)
+      )
+  }
+
+  getQuestions(id:number): Observable<IQuestion[]> {
+    return this.http.get<QuestionnareRes>(`${this.apiURL}/v1/quizzes/${id}`)
+      .pipe(
+        map(res => res.questions)
       )
   }
 
