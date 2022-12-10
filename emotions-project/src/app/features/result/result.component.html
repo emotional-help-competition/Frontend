@@ -1,11 +1,18 @@
-<div class="container-title" *ngIf="isVisible">
+<div class="container">
+  <div class="container__title" *ngIf="isVisible">
   Your test results
 </div>
-<app-emotion-map [result] = "result"></app-emotion-map>
-<div class="container-title" *ngIf="isVisible">
+<app-emotion-map [result]="result"></app-emotion-map>
+<div class="container__btn" *ngIf="isVisible">
+  <p class="container__text">To copy the link to your test results to clipboard, click the button below</p>
+  <app-button classes="btn btn__secondary" title="Copy" ngxClipboard [cbContent]="link"></app-button>
+</div>
+<div class="container__title" *ngIf="isVisible">
   Recommendations
 </div>
 <app-recommendation-list [recommendations]="recommendations"></app-recommendation-list>
 <div>
   <app-spinner *ngIf="this.spinnerService.isVisible$ | async"></app-spinner>
 </div>
+</div>
+

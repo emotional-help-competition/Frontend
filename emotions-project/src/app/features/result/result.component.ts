@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SpinnerService } from 'src/app/core/spinner.service';
 import { TestService } from 'src/app/core/test.service';
@@ -18,9 +18,11 @@ export class ResultComponent implements OnInit, OnDestroy {
   recSub!: Subscription;
   recommendations: IRecommendation[] = [];
   isVisible = false;
+  link = this.router.routerState.snapshot.url;
 
   constructor(private testService: TestService,
     private route: ActivatedRoute,
+    private router: Router,
     public spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
