@@ -9,6 +9,7 @@ import { ResultItem } from 'src/app/models/emotions';
 })
 export class EmotionMapComponent implements OnInit {
   @Input() result: ResultItem[] = [];
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -23,6 +24,6 @@ export class EmotionMapComponent implements OnInit {
     let g = parseInt(color.substring(2, 4), 16);
     let b = parseInt(color.substring(4, 6), 16);
 
-    return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity/10 + ')';
+    return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
   }
 }

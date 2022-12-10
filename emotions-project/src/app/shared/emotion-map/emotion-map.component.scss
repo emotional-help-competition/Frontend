@@ -62,12 +62,16 @@
     }
   }
 
-  h3, h4 {
+  h3,
+  h4 {
     text-transform: uppercase;
   }
 }
+
 @media (min-width:1024px) {
-  .emotions-map__sub-categories {
-    visibility: visible;
+  .emotions-map {
+    &__sub-categories {
+      visibility: visible;
+    }
   }
 }

@@ -3,7 +3,7 @@
       <h3 class="emotions-map__hexagon">Emotions</h3>
     </div>
   
-    <div *ngFor="let item of result; let i = index"
+    <div *ngFor="let item of result | slice:0:6; let i = index" 
          class="emotions-map__item">
   
       <h4 class="emotions-map__hexagon" [ngStyle]="{'background': getBgColour(item)}">
@@ -11,10 +11,10 @@
       </h4>
   
       <div class="emotions-map__sub-categories" [ngClass]="'emotions-map__sub-categories--'+ (i + 1)">
-        <div *ngFor="let cat of item.subCategories; let j = index">
+        <div *ngFor="let cat of item.subCategories | slice:0:4; let j = index">
           <div class="emotions-map__hexagon emotions-map__hexagon--small"
                [ngStyle]="{'background': getBgColour(item, cat.score)}">
-            <span>{{cat.emotions}}</span>
+               <span *ngFor="let emotion of cat.emotions">{{emotion}}</span>
           </div>
         </div>
       </div>

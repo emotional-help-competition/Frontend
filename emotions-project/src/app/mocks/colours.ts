@@ -4,8 +4,8 @@ export const ColoursMap = {
   fear: '#CBD651',
   surprise: '#AC85D0',
   anger: '#DC984F',
-  love: '#FF0000',
+  love: '#EF3E3E',
   scared: '#5CD286',
-  accepted: '#FFA500',
-  afreid: '#964B00'
+  accepted: '#638500',
+  afraid: '#964B00'
 }

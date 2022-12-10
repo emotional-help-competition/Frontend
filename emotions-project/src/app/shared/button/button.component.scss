@@ -7,13 +7,12 @@
   cursor: pointer;
 
   &__primary {
-    background-color: rgb(85, 100, 245);
+    background-color:rgb(64, 64, 115);
     border: none;
-    color: rgb(64, 64, 115);
+    color:  white;
 
     &:hover {
-      background-color: rgb(64, 64, 115);
-      color: white;
+      background-color: rgb(85, 100, 245);      
     }
   }
 

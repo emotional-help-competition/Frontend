@@ -13,6 +13,7 @@
   grid-template-rows: repeat(3, 120px);
   justify-content: center;
   place-items: center;
+  
 
   & > *:nth-child(1) {
     grid-area: 2 / 3 / 2 / 5;
@@ -49,6 +50,7 @@
   grid-template-rows: repeat(2, 80px);
   justify-content: center;
   place-items: center;
+  font-size: 12px;
   left: 0;
 
   & > *:nth-child(1) {
@@ -74,6 +76,7 @@
   grid-template-rows: repeat(2, 80px);
   justify-content: center;
   place-items: center;
+  font-size: 12px;
   right: 0;
 
   & > *:nth-child(1) {

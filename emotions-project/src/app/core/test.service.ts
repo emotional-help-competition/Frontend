@@ -1,13 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ResultItem } from '../models/emotions';
 import { IQuestion, IQuizz } from '../models/question';
-import { QuestionnareRes } from '../models/questionnare-res';
+import { AttemptRes, QuestionnareRes } from '../models/questionnare-res';
 import { QuizzRes } from '../models/quizz-res';
 import { IRecommendation } from '../models/recommendation';
-
 
 
 @Injectable({
@@ -33,7 +32,10 @@ export class TestService {
   }
 
   processTest(questions: (Partial<IQuestion>[]), id:number): Observable<number> {
-    return this.http.post<number>(`${this.apiURL}/v1/quizzes/${id}`, questions)
+    return this.http.post<AttemptRes>(`${this.apiURL}/v1/quizzes/${id}`, questions)
+    .pipe(
+      map(res=>res.attemptId)
+    )
 
   }
 
@@ -42,6 +44,8 @@ export class TestService {
   }
 
   getRecommendations(attemptId:number): Observable<IRecommendation[]>{
-    return this.http.get<IRecommendation[]>(`${this.apiURL}/v1/appointments/attempt/${attemptId}`)
+    let body = new HttpParams();
+    body = body.set('attemptId', attemptId);
+    return this.http.post<IRecommendation[]>(`${this.apiURL}/v1/recommendations`, body)
   }
 }
