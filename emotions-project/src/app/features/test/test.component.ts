@@ -36,7 +36,6 @@ export class TestComponent implements OnInit, OnDestroy {
     this.spinnerService.open()
     this.id = this.route.snapshot.params['id'];
     this.sub = this.testService.getQuizz(this.id).subscribe(res => {
-      console.log(res)
       this.questions = res;
       this.setFormData();
       this.isVisible = true;
