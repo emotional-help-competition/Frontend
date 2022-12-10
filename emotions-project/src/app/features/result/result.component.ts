@@ -1,49 +1,42 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SpinnerService } from 'src/app/core/spinner.service';
 import { TestService } from 'src/app/core/test.service';
+import { ResultItem } from 'src/app/models/emotions';
 import { IRecommendation } from 'src/app/models/recommendation';
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit, OnDestroy {
 
-  emotionJoy = false;
-  emotionFear = false;
-  emotionSadness = false;
-  emotionDisgust = false;
-  emotionSurprise = false;
-  emotionAnger = false;
-
+  result!: ResultItem[];
+  sub!: Subscription;
+  recSub!: Subscription;
   recommendations: IRecommendation[] = [];
   isVisible = false;
-  sub!: Subscription;
 
   constructor(private testService: TestService,
+    private route: ActivatedRoute,
     public spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
     this.spinnerService.open()
-    this.sub = this.testService.getRecommendations().subscribe((res) => {
-      this.recommendations = res;
-    });
-    setTimeout(() => {
-      this.emotionJoy = this.testService.emotionJoy;
-      this.emotionFear = this.testService.emotionFear;
-      this.emotionSadness = this.testService.emotionSadness;
-      this.emotionDisgust = this.testService.emotionDisgust;
-      this.emotionSurprise = this.testService.emotionSurprise;
-      this.emotionAnger = this.testService.emotionAnger;
+    const atemptId = this.route.snapshot.params['id']
+    this.recSub = this.testService.getRecommendations(atemptId).subscribe(res => this.recommendations = res)
+    this.sub = this.testService.getResult(atemptId).subscribe((res) => {
+      this.result = res;
       this.isVisible = true;
       this.spinnerService.close();
-    }, 2000);
+    })
   }
-  
+
   ngOnDestroy(): void {
-    if(this.sub) this.sub.unsubscribe()
+    if (this.sub) this.sub.unsubscribe();
+    if (this.recSub) this.recSub.unsubscribe();
   }
+
 }

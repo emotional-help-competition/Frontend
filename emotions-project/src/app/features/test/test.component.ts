@@ -12,7 +12,6 @@ import { IQuestion } from 'src/app/models/question';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit, OnDestroy {
-
   sub!: Subscription;
   postSub!: Subscription;
   isSubmited = false;
@@ -31,11 +30,13 @@ export class TestComponent implements OnInit, OnDestroy {
   get questionsArr(): FormArray {
     return this.testForm.get('questions') as FormArray
   }
+  id!: number;
 
   ngOnInit(): void {
     this.spinnerService.open()
-    const id: number = this.route.snapshot.params['id'];
-    this.sub = this.testService.getQuestions(id).subscribe(res => {
+    this.id = this.route.snapshot.params['id'];
+    this.sub = this.testService.getQuizz(this.id).subscribe(res => {
+      console.log(res)
       this.questions = res;
       this.setFormData();
       this.isVisible = true;
@@ -66,8 +67,8 @@ export class TestComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.isSubmited = true;
     if (this.testForm.invalid) return
-    this.testService.postTest(this.testForm.value.questions as IQuestion[]).subscribe((res) => {
-     this.router.navigate(['/result'])
+    this.testService.processTest(this.testForm.value.questions as IQuestion[], this.id).subscribe(atemptId => {
+      this.router.navigate(['/result', atemptId])
     })
   }
 

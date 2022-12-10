@@ -1,0 +1,77 @@
+@import "../../../styles/mixins.scss";
+
+.emotions-map {
+  @include hexagon-grid;
+  margin: 175px auto;
+
+  &__item {
+    position: relative;
+  }
+
+  &__hexagon {
+    @include size(150px);
+    @include hexagon;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+
+    &--small {
+      @include size(100px);
+    }
+  }
+
+  &__category {
+    text-transform: uppercase;
+  }
+
+  &__sub-categories {
+    position: absolute;
+    bottom: 0;
+    visibility: hidden;
+
+    &--1 {
+      @include rhombus-left;
+      transform: translate(-95px, -152px);
+    }
+
+    &--2 {
+      @include rhombus-right;
+      transform: translate(40px, -152px);
+    }
+
+    &--3 {
+      @include rhombus-left;
+      transform: translate(-98px, 38px);
+    }
+
+    &--4 {
+      @include rhombus-right;
+      transform: translate(152px, 12px);
+    }
+
+    &--5 {
+      @include rhombus-left;
+      transform: translate(-42px, 120px);
+    }
+
+    &--6 {
+      @include rhombus-right;
+      transform: translate(95px, 120px);
+    }
+  }
+
+  h3,
+  h4 {
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width:1024px) {
+  .emotions-map {
+    &__sub-categories {
+      visibility: visible;
+    }
+  }
+}
