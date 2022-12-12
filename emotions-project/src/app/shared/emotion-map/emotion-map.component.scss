@@ -32,12 +32,12 @@
     visibility: hidden;
 
     &--1 {
-      @include rhombus-left;
+      @include rhombus-top--left;
       transform: translate(-95px, -152px);
     }
 
     &--2 {
-      @include rhombus-right;
+      @include rhombus-top--right;
       transform: translate(40px, -152px);
     }
 

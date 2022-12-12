@@ -17,7 +17,7 @@ export class TestComponent implements OnInit, OnDestroy {
   isSubmited = false;
   isVisible = false;
   questions: IQuestion[] = [];
-
+  
   testForm = new FormGroup({
     questions: new FormArray([])
   });

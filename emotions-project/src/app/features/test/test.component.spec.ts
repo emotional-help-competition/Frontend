@@ -6,6 +6,8 @@ import { TestService } from 'src/app/core/test.service';
 import { TestComponent } from './test.component';
 import { TestServiceMock } from 'src/app/core/test.service.mock';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { questionsMock, testResMock } from 'src/app/mocks/tests-mock';
+import { By } from '@angular/platform-browser';
 
 describe('TestComponent', () => {
   let component: TestComponent;
@@ -23,8 +25,7 @@ describe('TestComponent', () => {
     providers: [
       {
         provide: TestService, useClass: TestServiceMock
-      },
-      FormBuilder
+      }
     ]
     })
     .compileComponents();
@@ -38,6 +39,4 @@ describe('TestComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-
 });

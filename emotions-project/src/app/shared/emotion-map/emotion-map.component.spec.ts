@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { resultMock } from 'src/app/mocks/result-mock';
 
 import { EmotionMapComponent } from './emotion-map.component';
 
@@ -11,13 +12,16 @@ describe('EmotionMapComponent', () => {
       declarations: [ EmotionMapComponent ]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(EmotionMapComponent);
+    
     component = fixture.componentInstance;
+    component.result = resultMock;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

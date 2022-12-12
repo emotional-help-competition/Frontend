@@ -1,4 +1,7 @@
-export const testMock = [
+import { IQuestion } from "../models/question"
+import { AttemptRes, QuestionnareRes } from "../models/questionnare-res"
+
+export const questionsMock = [
   {
     "id": 1,
     "text": "Do you like to get a present?",
@@ -46,5 +49,28 @@ export const testMock = [
       "id": 6,
       "description": "sadness"
     }
+  }
+]
+
+export const questionsResMock:QuestionnareRes ={
+  questions: questionsMock,
+}
+
+export const attemptResMock:AttemptRes = {
+  attemptId : 5
+}
+
+export const testResMock = [
+  {
+    emotionId: 5,
+    value: 3
+  },
+  {
+    emotionId: 2,
+    value: 0
+  },
+  {
+    emotionId: 4,
+    value: 2
   }
 ]
