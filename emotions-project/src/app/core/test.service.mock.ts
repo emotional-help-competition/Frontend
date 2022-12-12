@@ -1,24 +1,30 @@
 import { Observable, of } from "rxjs";
+import { quizzMock } from "../mocks/quizz-mock";
+import { recommendationsMock } from "../mocks/recommendations-mock";
 import { resultMock } from "../mocks/result-mock";
-import { testMock } from "../mocks/tests-mock";
-import { IEmotions } from "../models/emotions";
-import { IQuestion } from "../models/question";
+import { questionsMock } from "../mocks/tests-mock";
+import { ResultItem } from "../models/emotions";
+import { IQuestion, IQuizz } from "../models/question";
+import { IRecommendation } from "../models/recommendation";
 
 export class TestServiceMock {
-    emotionJoy = true;
-    emotionFear = true;
-    emotionSadness = true;
-    emotionDisgust = true;
-    emotionSurprise = true;
-    emotionAnger = true;
 
-    getAll(): Observable<IQuestion[]> {
-        return of(testMock);
+
+    getQuizzes(): Observable<IQuizz[]> {
+        return of(quizzMock);
+    }
+    getQuizz(): Observable<IQuestion[]> {
+        return of(questionsMock);
     }
 
-
-    postTest(): Observable<IEmotions[]> {
-        return of(resultMock);
+    processTest(): Observable<number> {
+        return of(5);
+    }
+    getResult():Observable<ResultItem[]>{
+        return of(resultMock)
+    }
+    getRecommendations():Observable<IRecommendation[]>{
+        return of(recommendationsMock)
     }
 
 }
